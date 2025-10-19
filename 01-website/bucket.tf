@@ -21,3 +21,28 @@ resource "google_storage_bucket" "website" {
 
   uniform_bucket_level_access = true
 }
+
+
+# ============================================================================================
+# RESOURCE: Upload index.html
+# ============================================================================================
+# Uploads the local index.html file to the bucket root.
+# --------------------------------------------------------------------------------------------
+resource "google_storage_bucket_object" "index" {
+  name         = "index.html"
+  bucket       = google_storage_bucket.website.name
+  source       = "${path.module}/index.html"
+  content_type = "text/html"
+}
+
+# ============================================================================================
+# RESOURCE: Upload 404.html
+# ============================================================================================
+# Uploads the local 404.html file to the bucket root.
+# --------------------------------------------------------------------------------------------
+resource "google_storage_bucket_object" "error_page" {
+  name         = "404.html"
+  bucket       = google_storage_bucket.website.name
+  source       = "${path.module}/404.html"
+  content_type = "text/html"
+}
