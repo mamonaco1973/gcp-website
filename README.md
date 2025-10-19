@@ -7,7 +7,8 @@ The included Bash scripts (`apply.sh`, `check_env.sh`, and `destroy.sh`) streaml
 
 ![website](website.png)
 
-**Note:** The only manual step in this process is **domain registration**. This project assumes that you register your domain manually using **Google Cloud Domains** (or another registrar) and configure it in **Cloud DNS**.  
+**Note:** The only manual step in this process is **domain registration**. This project assumes that you register your domain manually using **Google Cloud Domains** (or another registrar) and configure it in **Cloud DNS**. 
+
 Once the domain and DNS zone are created, Terraform automates the rest — including the creation of the GCS bucket, HTTPS load balancer, backend configuration, and TLS certificate provisioning. In the accompanying video tutorial, we walk through these manual domain setup steps in the Cloud Console before transitioning into Terraform automation.
 
 
