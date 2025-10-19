@@ -5,3 +5,5 @@
 *.terraform.*
 *.pem
 password.txt
+credentials.json
+
