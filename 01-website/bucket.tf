@@ -46,3 +46,17 @@ resource "google_storage_bucket_object" "error_page" {
   source       = "${path.module}/404.html"
   content_type = "text/html"
 }
+
+# ============================================================================================
+# RESOURCE: Make Bucket Publicly Readable
+# ============================================================================================
+# PURPOSE:
+#   Make all objects in the bucket publicly readable (for static site hosting)
+# ============================================================================================
+
+resource "google_storage_bucket_iam_member" "public_read" {
+  bucket = google_storage_bucket.website.name
+  role   = "roles/storage.objectViewer"
+  member = "allUsers"
+}
+
