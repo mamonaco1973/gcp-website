@@ -3,7 +3,7 @@
 # Script: apply.sh
 # Purpose:
 #   - Validate environment prerequisites
-#   - Initialize and apply Terraform to provision Azure based website 
+#   - Initialize and apply Terraform to provision GCP based website 
 #================================================================================
 
 #--------------------------------------------------------------------------------
@@ -25,10 +25,10 @@ if [ $? -ne 0 ]; then
 fi
 
 #--------------------------------------------------------------------------------
-# 3. Build Website in Azure with HTTPS
+# 3. Build Website in GCP with HTTPS
 #--------------------------------------------------------------------------------
 
-echo "NOTE: Building Simple Website in Azure..."
+echo "NOTE: Building Simple Website in GCP..."
 
 cd 01-website
 

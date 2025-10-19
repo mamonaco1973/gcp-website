@@ -2,7 +2,7 @@
 #================================================================================
 # Script: destroy.sh
 # Purpose:
-#   - Destroy Azure website infrastructure previously provisioned
+#   - Destroy GCP website infrastructure previously provisioned
 #   - Ensure clean teardown of Terraform-managed resources in the 01-website dir
 #================================================================================
 
