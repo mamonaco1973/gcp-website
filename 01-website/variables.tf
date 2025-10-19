@@ -1,33 +1,40 @@
 # ============================================================================================
 # FILE: variables.tf
 # PURPOSE:
-#   - Define input variables required for the Terraform configuration
-#   - Centralize domain configuration for Google Cloud DNS and related resources
+#   Define input variables for the Terraform configuration.
+#   Centralize domain settings for Cloud DNS and related resources.
 # ============================================================================================
 
 # ============================================================================================
 # VARIABLE: Domain Name
 # ============================================================================================
-# Defines the fully qualified domain name (FQDN) of the Google Cloud DNS managed zone.
-# This value is used across multiple resources (e.g., DNS records, SSL certificates)
-# to maintain consistent naming and DNS resolution.
-#
+# Specifies the fully qualified domain name (FQDN) of the Cloud DNS zone.
+# Used by multiple resources such as DNS records and SSL certificates.
+# --------------------------------------------------------------------------------------------
 # Example:
 #   mikes-cloud-solutions.net
 #
-# NOTE:
-#   - Do NOT include a trailing dot (.) as Cloud DNS managed zones are stored without it.
-#   - Replace the default value with your actual registered domain name.
+# Notes:
+#   - Do not include a trailing dot (.).
+#   - Replace the default value with your registered domain name.
 # --------------------------------------------------------------------------------------------
 variable "domain_name" {
-  description = "Fully qualified domain name of the GCP Cloud DNS managed zone (e.g., mikes-cloud-solutions.net)"
+  description = "FQDN of the Cloud DNS managed zone (e.g., mikes-cloud-solutions.net)"
   type        = string
   default     = "mikes-cloud-solutions.net"  # Replace with your domain
 }
 
+# ============================================================================================
+# VARIABLE: Zone Name
+# ============================================================================================
+# Defines the name of the existing Cloud DNS managed zone in Google Cloud.
+# Used to reference the correct DNS zone when creating record sets.
+# --------------------------------------------------------------------------------------------
+# Example:
+#   mikes-cloud-solutions-net
+# --------------------------------------------------------------------------------------------
 variable "zone_name" {
-  description = "Zone name in Cloud DNS corresponding to the domain (e.g., mikes-cloud-solutions-net)"
+  description = "Cloud DNS managed zone name (e.g., mikes-cloud-solutions-net)"
   type        = string
-  default     = "mikes-cloud-solutions-net"  # Replace with your domain
+  default     = "mikes-cloud-solutions-net"  # Replace with your zone name
 }
-
