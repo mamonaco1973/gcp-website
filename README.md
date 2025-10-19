@@ -17,7 +17,6 @@ Once the domain and DNS zone are created, Terraform automates the rest — inclu
 * [A Registered Domain](https://cloud.google.com/domains/docs/register-domain)
 * [Install gcloud CLI](https://cloud.google.com/sdk/docs/install) 
 * [Install Latest Terraform](https://developer.hashicorp.com/terraform/install)
-* [Install Latest Packer](https://developer.hashicorp.com/packer/install)
 
 If this is your first time watching our content, we recommend starting with this video: [GCP + Terraform: Easy Setup](https://youtu.be/3spJpYX4f7I). It provides a step-by-step guide to properly configure Terraform, Packer, and the gcloud CLI.
 
