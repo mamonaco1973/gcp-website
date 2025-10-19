@@ -24,11 +24,14 @@ resource "google_compute_url_map" "website_map" {
   default_service = google_compute_backend_bucket.website_backend.id
 }
 
-# Google-managed SSL certificate for your domain
+# Google-managed SSL certificate for both apex and www domains
 resource "google_compute_managed_ssl_certificate" "website_cert" {
   name = "website-cert"
   managed {
-    domains = ["www.${var.domain_name}"]
+    domains = [
+      var.domain_name,
+      "www.${var.domain_name}"
+    ]
   }
 }
 
