@@ -16,10 +16,11 @@ project_id=$(jq -r '.project_id' "./credentials.json")
 echo "NOTE: Enabling APIs needed for build."
 
 gcloud config set project $project_id  
-gcloud services enable compute.googleapis.com
-gcloud services enable storage.googleapis.com
-gcloud services enable dns.googleapis.com
-gcloud services enable certificatemanager.googleapis.com
-gcloud services enable cloudresourcemanager.googleapis.com
-gcloud services enable serviceusage.googleapis.com
+gcloud services enable compute.googleapis.com --quiet
+gcloud services enable storage.googleapis.com --quiet
+gcloud services enable dns.googleapis.com --quiet
+gcloud services enable certificatemanager.googleapis.com --quiet
+gcloud services enable cloudresourcemanager.googleapis.com --quiet
+gcloud services enable serviceusage.googleapis.com --quiet
+
 
