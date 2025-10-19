@@ -1,29 +1,43 @@
-# #!/bin/bash
-# # ================================================================================================
-# # Wait for HTTP 200 from website (ignores SSL errors)
-# # ================================================================================================
+#!/bin/bash
+# ============================================================================================
+# FILE: wait-for-cert.sh
+# PURPOSE:
+#   Wait until a Google-managed SSL certificate becomes ACTIVE.
+#   Polls every 60 seconds and exits once both domains are validated.
+# ============================================================================================
 
-# cd ./01-website
-# DOMAIN=$(terraform console <<< "var.domain_name" | tr -d '"')
-# cd ..
-# URL="https://www.${DOMAIN}"
+set -euo pipefail
 
-# echo "NOTE: Waiting for $URL to return HTTP 200..."
+CERT_NAME="website-cert"   # Change if needed
+PROJECT_ID="$(gcloud config get-value project 2>/dev/null || true)"
 
-# while true; do
-#   # Perform curl with:
-#   # -k : ignore SSL certificate validation errors
-#   # -s : silent mode (no progress)
-#   # -o /dev/null : discard body
-#   # -w "%{http_code}" : print HTTP status code only
-#   STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" "$URL")
+echo "NOTE: Monitoring certificate status for: ${CERT_NAME}"
+echo "NOTE: Project: ${PROJECT_ID}"
 
-#   if [ "$STATUS" -eq 200 ]; then
-#     echo "NOTE: URL is now reachable: $URL"
-#     break
-#   else
-#     echo "WARNING: $URL not available yet... (Status: $STATUS)"
-#     echo "WARNING: Waiting 1 minute before retrying..."
-#     sleep 60
-#   fi
-# done
+while true; do
+  STATUS=$(gcloud compute ssl-certificates describe "$CERT_NAME" --global \
+            --format="value(managed.status)" 2>/dev/null || echo "UNKNOWN")
+
+  DOMAIN_STATUSES=$(gcloud compute ssl-certificates describe "$CERT_NAME" --global \
+            --format="value(managed.domainStatus)" 2>/dev/null || echo "UNKNOWN")
+
+  echo "NOTE: Certificate status: ${STATUS}"
+  echo "NOTE: Domain statuses: ${DOMAIN_STATUSES}"
+
+  if [[ "$STATUS" == "ACTIVE" ]]; then
+    echo "NOTE: Certificate is ACTIVE for all domains."
+    echo "================================================================================"
+    break
+  fi
+
+  if [[ "$STATUS" == "FAILED" || "$STATUS" == "FAILED_NOT_VISIBLE" ]]; then
+    echo "ERROR: Certificate failed to provision. Check DNS records and try again."
+    exit 1
+  fi
+
+  echo "WARNING: Still provisioning. Waiting 300 seconds..."
+  sleep 300
+done
+
+
+echo "NOTE: Certificate is now active and HTTPS should be live."
