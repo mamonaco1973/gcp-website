@@ -26,7 +26,6 @@ while true; do
 
   if [[ "$STATUS" == "ACTIVE" ]]; then
     echo "NOTE: Certificate is ACTIVE for all domains."
-    echo "================================================================================"
     break
   fi
 
