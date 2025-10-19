@@ -24,3 +24,10 @@ variable "domain_name" {
   type        = string
   default     = "mikes-cloud-solutions.net"  # Replace with your domain
 }
+
+variable "zone_name" {
+  description = "Zone name in Cloud DNS corresponding to the domain (e.g., mikes-cloud-solutions-net)"
+  type        = string
+  default     = "mikes-cloud-solutions-net"  # Replace with your domain
+}
+
