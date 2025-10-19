@@ -15,6 +15,7 @@ Once the domain and DNS zone are created, Terraform automates the rest — inclu
 ## Prerequisites
 
 * [A Registered Domain](https://cloud.google.com/domains/docs/register-domain)
+* [A Google Cloud Account](https://console.cloud.google.com/)
 * [Install gcloud CLI](https://cloud.google.com/sdk/docs/install) 
 * [Install Latest Terraform](https://developer.hashicorp.com/terraform/install)
 
