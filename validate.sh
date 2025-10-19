@@ -38,5 +38,10 @@ while true; do
   sleep 300
 done
 
-
 echo "NOTE: Certificate is now active and HTTPS should be live."
+
+cd ./01-website
+DOMAIN=$(terraform console <<< "var.domain_name" | tr -d '"')
+cd ..
+URL="https://www.${DOMAIN}"
+echo "NOTE: URL is now reachable: $URL"
