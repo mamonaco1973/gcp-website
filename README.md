@@ -71,7 +71,7 @@ The following resources are created and configured automatically:
 
 | Component | Description |
 |------------|--------------|
-| **Google Cloud Storage (GCS) Bucket** | Hosts all website content (e.g., `index.html`, `404.html`). Configured as a **backend bucket** for the HTTPS Load Balancer with direct public access disabled. |
+| **Google Cloud Storage (GCS) Bucket** | Hosts all website content (e.g., `index.html`, `404.html`). Configured as a **backend bucket** for the HTTPS Load Balancer with public access enabled. |
 | **HTTPS Load Balancer** | Provides global HTTPS delivery and intelligent routing. It uses the GCS bucket as its backend and automatically redirects all HTTP traffic to HTTPS. |
 | **Google-Managed TLS Certificate** | Secures the custom domain with SSL/TLS encryption. Certificates are automatically issued, validated, and renewed by Google. |
 | **Cloud DNS Zone** | Hosts DNS records for the manually registered domain (created in the Cloud Console). Terraform creates the necessary **A** and **CNAME** records for domain validation and routing. |
