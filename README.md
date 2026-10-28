@@ -58,6 +58,7 @@ defaults are the author's:
 ```bash
 git clone https://github.com/mamonaco1973/gcp-website.git
 cd gcp-website
+./api_setup.sh   # first time in a project
 ./apply.sh
 ```
 
